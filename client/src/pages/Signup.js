@@ -18,8 +18,6 @@ function Signup() {
     confirmPassword: "",
     image: "",
   });
-  // console.log(data);
-
   // Function to toggle the visibility of the password input
   const handleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -48,7 +46,6 @@ function Signup() {
       };
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { firstName, email, password, confirmPassword } = data;
