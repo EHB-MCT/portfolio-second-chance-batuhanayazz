@@ -40,7 +40,7 @@ function Signup() {
   };
   // Event handler for uploading a profile image
   const handleUploadProfileImage = async (e) => {
-    const data = await ImagetoBase64(e.target.files[0])
+    const data = await ImagetoBase64(e.target.files[0]);
     setData((preve) => {
       return {
         ...preve,
@@ -54,6 +54,22 @@ function Signup() {
     const { firstName, email, password, confirmPassword } = data;
     if (firstName && email && password && confirmPassword) {
       if (password === confirmPassword) {
+        // this code creates a new user in the database
+        // it uses the fetch API to send a POST request to the server
+        // the server responds with the newly created user
+        // the new user is then logged in
+        const fetchData = await fetch(
+          `${process.env.REACT_APP_SERVER_DOMAIN}/signup`,
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+        const dataRes = await fetchData.json();
+        console.log(dataRes);
       } else {
         alert("password and confirm password not equal");
       }
@@ -71,7 +87,6 @@ function Signup() {
             className="w-full h-full"
             alt="loginSignupImage"
           />
-
           <label htmlFor="profileImage">
             <div className="absolute bottom-0 h-1/3  bg-slate-500 bg-opacity-50 w-full text-center cursor-pointer">
               <p className="text-sm p-1 text-white">Upload</p>
@@ -85,7 +100,7 @@ function Signup() {
             />
           </label>
         </div>
-
+        <h1 className="text-center content-center">MAX 10MB</h1>
         <form className="w-full py-3 flex flex-col" onSubmit={handleSubmit}>
           <label htmlFor="firstName">First Name</label>
           <input
