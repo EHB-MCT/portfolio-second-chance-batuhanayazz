@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import loginSignupImage from "../assets/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ImagetoBase64 } from "../utility/ImagetoBase64";
 import { toast } from "react-hot-toast";
 
 /* This section sets up the necessary state variables and functions for managing a user registration form */
 function Signup() {
+  const navigate = useNavigate();
   // State variables to toggle password visibility
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -69,6 +70,9 @@ function Signup() {
         const dataRes = await fetchData.json();
         console.log(dataRes);
         toast(dataRes.message);
+        if (dataRes.alert) {
+          navigate("/login");
+        }
       } else {
         alert("password and confirm password not equal");
       }

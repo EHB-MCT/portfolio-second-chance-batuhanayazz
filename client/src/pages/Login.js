@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import loginSignupImage from "../assets/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginRedux } from "../redux/userSlice";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+  const userData = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   // console.log(data);
   const handleShowPassword = () => {
     setShowPassword((preve) => !preve);
@@ -28,12 +34,32 @@ function Login() {
   // This code is used to handle form submission. It checks if the user has entered all required fields, and if so, it checks if the password and confirm password fields match. If they do, it calls the function handleSubmit. If they do not, it alerts the user that the password and confirm password fields do not match.
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { firstName, email, password, confirmPassword } = data;
-    if (firstName && email && password && confirmPassword) {
-      if (password === confirmPassword) {
-      } else {
-        alert("password and confirm password not equal");
+    const { email, password } = data;
+    if (email && password) {
+      const fetchData = await fetch(
+        `${process.env.REACT_APP_SERVER_DOMAIN}/login`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      const dataRes = await fetchData.json();
+      console.log(dataRes);
+
+      toast(dataRes.message);
+
+      if (dataRes.alert) {
+        dispatch(loginRedux(dataRes));
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
       }
+
+      console.log(userData);
     } else {
       alert("Please Enter required fields");
     }

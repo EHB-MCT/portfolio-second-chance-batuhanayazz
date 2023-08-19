@@ -53,5 +53,38 @@ app.post("/signup", async (req, res) => {
   });
 });
 
+//login
+app.post("/login", (req, res) => {
+  // console.log(req.body);
+  userModel.findOne({ email: req.body.email }).then((result) => {
+    if (!result) {
+      res.status(401).send({
+        status: "Bad Request",
+        message: "Your mail is not correct!",
+        alert: false,
+      });
+    } else if (req.body.password !== result.password) {
+      res.status(401).send({
+        status: "Bad Request",
+        message: "Your password is not correct!",
+        alert: false,
+      });
+    } else {
+      res.status(200).send({
+        status: "Login Successfully",
+        message: "You are logged in",
+        alert: true,
+        data: {
+          _id: result._id,
+          firstName: result.firstName,
+          lastName: result.lastName,
+          email: result.email,
+          image: result.image,
+        },
+      });
+    }
+  });
+});
+
 //server is running
 app.listen(PORT, () => console.log("Server is running at port : " + PORT));

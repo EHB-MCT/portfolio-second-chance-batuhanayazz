@@ -4,9 +4,12 @@ import Logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  //profile picture when user login
+  const userData = useSelector((state) => state.user);
 
   const handleShowMenu = () => {
     setShowMenu((preve) => !preve);
@@ -35,10 +38,17 @@ const Header = () => {
               0
             </div>
           </div>
-
           <div className="text-primary cursor-pointer" onClick={handleShowMenu}>
             <div className="text-2xl">
-              <FaUserAlt color="#0096D6" />
+              {userData?.image ? (
+                <img
+                  src={userData?.image}
+                  alt="user"
+                  className="h-8 w-8 rounded-full"
+                />
+              ) : (
+                <FaUserAlt color="#0096D6" />
+              )}
             </div>
             {showMenu && (
               <div className="absolute right-2 bg-white py-2 px-2 shadow-md flex flex-col">
