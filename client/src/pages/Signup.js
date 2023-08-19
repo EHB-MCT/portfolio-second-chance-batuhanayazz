@@ -3,6 +3,7 @@ import loginSignupImage from "../assets/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { ImagetoBase64 } from "../utility/ImagetoBase64";
+import { toast } from "react-hot-toast";
 
 /* This section sets up the necessary state variables and functions for managing a user registration form */
 function Signup() {
@@ -67,6 +68,7 @@ function Signup() {
         );
         const dataRes = await fetchData.json();
         console.log(dataRes);
+        toast(dataRes.message);
       } else {
         alert("password and confirm password not equal");
       }
