@@ -5,14 +5,22 @@ import { Link } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
+import { logoutRedux } from "../redux/userSlice";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+
   //profile picture when user login
   const userData = useSelector((state) => state.user);
-
+  //
+  const dispatch = useDispatch();
   const handleShowMenu = () => {
     setShowMenu((preve) => !preve);
+  };
+  const handleLogout = () => {
+    dispatch(logoutRedux());
+    toast("Logout successfully");
   };
 
   return (
@@ -55,9 +63,23 @@ const Header = () => {
                 <Link to={"newProduct"} className="whitespace-nowrap">
                   New product
                 </Link>
-                <Link to={"login"} className="whitespace-nowrap">
-                  Login
-                </Link>
+                {userData.image ? (
+                  <>
+                    <p
+                      className="cursor-pointer text-secondary"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </p>
+                  </>
+                ) : (
+                  <Link
+                    to={"login"}
+                    className="whitespace-nowrap cursor-pointer"
+                  >
+                    Login
+                  </Link>
+                )}
               </div>
             )}
           </div>
