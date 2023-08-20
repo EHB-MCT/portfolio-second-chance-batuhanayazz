@@ -1,29 +1,53 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import HomeCard from "../components/HomeCard";
+import AllProduct from "../components/AllProduct";
 
-function Home() {
+const Home = () => {
   const productData = useSelector((state) => state.product.productList);
-  //console.log(productData);
-  const homeProductCartList = productData.slice(0, 5);
+  const homeProductCartList = productData.slice(1, 5);
+  const loadingArray = new Array(4).fill(null);
+
   return (
     <>
       <div className="p-2 md:p-4">
-        <div className="md:flex gap-4 py-2">
-          <div className="md:w-1/2">
-            <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
-              <p className="text-sm font-medium text-slate-900">
-                Bike Delivery
-              </p>
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
-                className="h-7"
-                alt=""
-              />
+        <div className="md:flex py-2 justify-center flex flex-wrap items-center text-center mt-3">
+          <div className="md:w-1/2 gap-5 justify-center flex flex-wrap items-center">
+            <div className="grid gap-4 grid-cols-3 ">
+              <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
+                <p className="text-sm font-medium text-slate-900">
+                  Bike Delivery
+                </p>
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
+                  className="h-7"
+                  alt=""
+                />
+              </div>
+              <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
+                <p className="text-sm font-medium text-slate-900">
+                  Car Delivery
+                </p>
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
+                  className="h-7"
+                  alt=""
+                />
+              </div>
+              <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
+                <p className="text-sm font-medium text-slate-900">
+                  Bike Delivery
+                </p>
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
+                  className="h-7"
+                  alt=""
+                />
+              </div>
             </div>
             <h2 className="text-4xl md:text-7xl font-bold py-3">
-              The Fasted Delivery in{" "}
-              <span className="text-secondary text-">Your Home</span>
+              The Fastest Delivery to{" "}
+              <span className="text-primary">Your Home</span>
             </h2>
             <p className="py-3 text-base ">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -32,30 +56,13 @@ function Home() {
               type and scrambled it to make a type specimen book. It has
               survived not only five centuries
             </p>
-            <button className="font-bold bg-primary text-slate-200 px-4 py-2 rounded-md">
-              Order Now
-            </button>
-          </div>
-          <div className="md:w-1/2 flex flex-wrap gap-5 p-4 justify-center">
-            {homeProductCartList[0]
-              ? homeProductCartList.map((el) => {
-                  return (
-                    <HomeCard
-                      key={el._id}
-                      id={el._id}
-                      image={el.image}
-                      name={el.name}
-                      price={el.price}
-                      category={el.category}
-                    />
-                  );
-                })
-              : "Loading..."}
           </div>
         </div>
+
+        <AllProduct />
       </div>
     </>
   );
-}
+};
 
 export default Home;

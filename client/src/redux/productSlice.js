@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-hot-toast";
 
 const initialState = {
   productList: [],
@@ -9,7 +10,6 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     setDataProduct: (state, action) => {
-      //console.log(action);
       state.productList = [...action.payload];
     },
   },
