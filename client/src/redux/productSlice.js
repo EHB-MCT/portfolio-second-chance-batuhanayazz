@@ -9,9 +9,11 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     setDataProduct: (state, action) => {
+      //console.log(action);
       state.productList = [...action.payload];
     },
   },
 });
 
 export const { setDataProduct } = productSlice.actions;
+export default productSlice.reducer;
