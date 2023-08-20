@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,7 @@ const Header = () => {
   //profile picture when user login
   const userData = useSelector((state) => state.user);
   //
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleShowMenu = () => {
     setShowMenu((preve) => !preve);
@@ -21,6 +22,9 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logoutRedux());
     toast("Logout successfully");
+    if ("Logout successfully") {
+      navigate("/");
+    }
   };
 
   return (
@@ -60,13 +64,18 @@ const Header = () => {
             </div>
             {showMenu && (
               <div className="absolute right-2 bg-white py-2 px-2 shadow-md flex flex-col">
-                <Link to={"newProduct"} className="whitespace-nowrap">
-                  New product
-                </Link>
+                {userData.email === process.env.REACT_APP_ADMIN_EMAIL && (
+                  <Link
+                    to={"newproduct"}
+                    className="whitespace-nowrap cursor-pointer px-3"
+                  >
+                    New product
+                  </Link>
+                )}
                 {userData.image ? (
                   <>
                     <p
-                      className="cursor-pointer text-secondary"
+                      className="cursor-pointer text-secondary px-3"
                       onClick={handleLogout}
                     >
                       Logout

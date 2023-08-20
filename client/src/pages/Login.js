@@ -4,7 +4,7 @@ import { BiShow, BiHide } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginRedux } from "../redux/userSlice";
 
 function Login() {
@@ -14,7 +14,6 @@ function Login() {
     password: "",
   });
   const navigate = useNavigate();
-  const userData = useSelector((state) => state);
   const dispatch = useDispatch();
 
   // console.log(data);
@@ -58,8 +57,6 @@ function Login() {
           navigate("/");
         }, 1000);
       }
-
-      console.log(userData);
     } else {
       alert("Please Enter required fields");
     }
