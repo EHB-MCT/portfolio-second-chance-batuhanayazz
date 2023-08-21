@@ -1,0 +1,3 @@
+MONGODB_USERNAME = dev5
+MONGODB_PASSWORD = admin
+MONGODB_URL = "mongodb+srv://dev5:admin@cluster0.tl8vj.mongodb.net/SpeedyServe?retryWrites=true&w=majority"
