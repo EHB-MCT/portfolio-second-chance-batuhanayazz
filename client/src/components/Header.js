@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast";
 import { logoutRedux } from "../redux/userSlice";
 
 const Header = () => {
+  //set state for menu
   const [showMenu, setShowMenu] = useState(false);
   //profile picture when user login
   const userData = useSelector((state) => state.user);
@@ -16,10 +17,12 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  //handle show/hide menu
   const handleShowMenu = () => {
     setShowMenu((preve) => !preve);
   };
 
+  //handle logout
   const handleLogout = () => {
     dispatch(logoutRedux());
     toast("Logout successfully");

@@ -11,15 +11,19 @@ const AllProduct = ({ heading }) => {
   const [filterby, setFilterBy] = useState("");
   const [dataFilter, setDataFilter] = useState([]);
 
+
   useEffect(() => {
+    // Update data filter when productData changes
     setDataFilter(productData);
   }, [productData]);
 
   const handleFilterProduct = (category) => {
     setFilterBy(category);
+    // Find products that match the selected category
     const filter = productData.filter(
       (el) => el.category.toLowerCase() === category.toLowerCase()
     );
+    // Update data filter with products that match the selected category
     setDataFilter(() => {
       return [...filter];
     });

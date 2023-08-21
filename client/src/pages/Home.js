@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import AllProduct from "../components/AllProduct";
 
@@ -27,17 +27,17 @@ const Home = () => {
                   Car Delivery
                 </p>
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
+                  src="https://cdn-icons-png.flaticon.com/512/171/171239.png"
                   className="h-7"
                   alt=""
                 />
               </div>
               <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
                 <p className="text-sm font-medium text-slate-900">
-                  Bike Delivery
+                  Motor Delivery
                 </p>
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
+                  src="https://cdn-icons-png.flaticon.com/512/1986/1986937.png"
                   className="h-7"
                   alt=""
                 />
