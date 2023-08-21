@@ -90,29 +90,32 @@ app.post("/login", (req, res) => {
 
 const schemaProduct = mongoose.Schema({
   name: String,
-  category:String,
+  category: String,
   image: String,
   price: String,
   description: String,
 });
-const productModel = mongoose.model("product",schemaProduct)
+const productModel = mongoose.model("product", schemaProduct);
 
-
-
-//save product in data 
+//save product in data
 //api
-app.post("/uploadProduct",async(req,res)=>{
-    // console.log(req.body)
-    const data = await productModel(req.body)
-    const datasave = await data.save()
-    res.send({message : "Upload successfully"})
-})
+app.post("/uploadProduct", async (req, res) => {
+  // console.log(req.body)
+  const data = await productModel(req.body);
+  const datasave = await data.save();
+  res.send({ message: "Upload successfully" });
+});
 
 //
-app.get("/product",async(req,res)=>{
-  const data = await productModel.find({})
-  res.send(JSON.stringify(data))
-})
+app.get("/product", async (req, res) => {
+  const data = await productModel.find({});
+  res.send(JSON.stringify(data));
+});
+
+app.post("/create-checkout-session", async (req, res) => {
+  console.log(req.body);
+  res.send({ message: "ok" });
+});
 
 //server is running
 app.listen(PORT, () => console.log("Server is running at port : " + PORT));
