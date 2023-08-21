@@ -30,7 +30,6 @@ const AllProduct = ({ heading }) => {
   return (
     <div className="my-5">
       <h2 className="font-bold text-2xl text-slate-800 mb-4">{heading}</h2>
-
       <div className="flex gap-4 justify-center">
         {categoryList[0] ? (
           categoryList.map((el) => {

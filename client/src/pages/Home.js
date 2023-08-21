@@ -1,18 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import HomeCard from "../components/HomeCard";
 import AllProduct from "../components/AllProduct";
 
 const Home = () => {
   const productData = useSelector((state) => state.product.productList);
-  const homeProductCartList = productData.slice(1, 5);
-  const loadingArray = new Array(4).fill(null);
+  console.log(productData);
 
   return (
     <>
       <div className="p-2 md:p-4">
         <div className="md:flex py-2 justify-center flex flex-wrap items-center text-center mt-3">
-          <div className="md:w-1/2 gap-5 justify-center flex flex-wrap items-center">
+          <div className="md:w-1/2 gap-5 justify-center flex flex-wrap items-center text-center">
             <div className="grid gap-4 grid-cols-3 ">
               <div className="flex gap-3 bg-slate-300 w-36 px-2 items-center rounded-full">
                 <p className="text-sm font-medium text-slate-900">
