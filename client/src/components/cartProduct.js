@@ -30,8 +30,8 @@ const CartProduct = ({ id, name, image, category, qty, total, price }) => {
         </div>
         <p className=" text-slate-500  font-medium ">{category}</p>
         <p className=" font-bold text-base">
-          <span className="text-red-500 ">₹</span>
           <span>{price}</span>
+          <span className="text-secondary ">€</span>
         </p>
         <div className="flex justify-between ">
           <div className="flex gap-3 items-center">
@@ -52,8 +52,8 @@ const CartProduct = ({ id, name, image, category, qty, total, price }) => {
           <div className="flex items-center gap-2 font-bold text-slate-700">
             <p>Total :</p>
             <p>
-              <span className="text-red-500">₹</span>
               {total}
+              <span className="text-secondary">€</span>
             </p>
           </div>
         </div>

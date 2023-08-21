@@ -10,15 +10,16 @@ import { logoutRedux } from "../redux/userSlice";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
-
   //profile picture when user login
   const userData = useSelector((state) => state.user);
   //
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleShowMenu = () => {
     setShowMenu((preve) => !preve);
   };
+
   const handleLogout = () => {
     dispatch(logoutRedux());
     toast("Logout successfully");
@@ -26,7 +27,7 @@ const Header = () => {
       navigate("/");
     }
   };
-
+  const cartItemNumber = useSelector((state) => state.product.cartItem);
   return (
     <header className="fixed shadow-md w-full h-50 px-2 md:px-4 z-50 bg-white">
       {/* Desktop and Mobile Friendly*/}
@@ -39,16 +40,17 @@ const Header = () => {
         <div className="flex items-center gap-4 md:gap-7">
           <nav className="flex gap-4 md:gap-6 text-base md:text-lg text-secondary font-semibold">
             <Link to={""}>Home</Link>
-            <Link to={"menu"}>Menu</Link>
             <Link to={"about"}>About</Link>
             <Link to={"contact"}>Contact</Link>
           </nav>
 
           <div className="text-2xl text-primary relative cursor-pointer">
-            <FaCartPlus />
-            <div className="absolute -top-2 -right-2 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center">
-              0
-            </div>
+            <Link to={"cart"}>
+              <FaCartPlus />
+              <div className="absolute -top-2 -right-2 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center">
+                {cartItemNumber.length}
+              </div>
+            </Link>
           </div>
           <div className="text-primary cursor-pointer" onClick={handleShowMenu}>
             <div className="text-2xl">
