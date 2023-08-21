@@ -1,13 +1,14 @@
-async function ImagetoBase64(file){
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
+// This function converts an image to base64 format
+async function ImagetoBase64(file) {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
 
-    const data = new Promise((resolve,reject)=>{
-        reader.onload = ()=> resolve(reader.result)
-        reader.onerror = err => reject(err)
-    })
+  const data = new Promise((resolve, reject) => {
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (err) => reject(err);
+  });
 
-    return data
+  return data;
 }
 
-export {ImagetoBase64}
+export { ImagetoBase64 };

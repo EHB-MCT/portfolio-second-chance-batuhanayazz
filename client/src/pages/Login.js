@@ -8,6 +8,13 @@ import { useDispatch } from "react-redux";
 import { loginRedux } from "../redux/userSlice";
 
 function Login() {
+  /* 
+1. I am creating a new variable called name and value.
+2. I am using the spread operator to get the data and then I am changing the value of the name that is passed to the function.
+3. I am returning the data, but I am changing the value of name that is passed.
+4. I am using the useState hook to update the data. 
+*/
+
   const [showPassword, setShowPassword] = useState(false);
   const [data, setData] = useState({
     email: "",
@@ -29,8 +36,9 @@ function Login() {
       };
     });
   };
-
-  // This code is used to handle form submission. It checks if the user has entered all required fields, and if so, it checks if the password and confirm password fields match. If they do, it calls the function handleSubmit. If they do not, it alerts the user that the password and confirm password fields do not match.
+  // This code is used to handle form submission.
+  //It checks if the user has entered all required fields, and if so, it checks if the password and confirm password fields match. If they do, it calls the function handleSubmit.
+  //If they do not, it alerts the user that the password and confirm password fields do not match.
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = data;

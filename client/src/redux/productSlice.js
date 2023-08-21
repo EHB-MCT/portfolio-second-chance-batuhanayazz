@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
-
 const initialState = {
   productList: [],
   cartItem: [],
@@ -13,6 +12,7 @@ export const productSlice = createSlice({
     setDataProduct: (state, action) => {
       state.productList = [...action.payload];
     },
+    //add to cart
     addCartItem: (state, action) => {
       const check = state.cartItem.some((el) => el._id === action.payload._id);
       if (check) {
@@ -26,12 +26,14 @@ export const productSlice = createSlice({
         ];
       }
     },
+    //delete cart item
     deleteCartItem: (state, action) => {
       toast("one Item Delete");
       const index = state.cartItem.findIndex((el) => el._id === action.payload);
       state.cartItem.splice(index, 1);
       console.log(index);
     },
+    //increase qty
     increaseQty: (state, action) => {
       const index = state.cartItem.findIndex((el) => el._id === action.payload);
       let qty = state.cartItem[index].qty;
@@ -43,6 +45,7 @@ export const productSlice = createSlice({
 
       state.cartItem[index].total = total;
     },
+    //decrease qty
     decreaseQty: (state, action) => {
       const index = state.cartItem.findIndex((el) => el._id === action.payload);
       let qty = state.cartItem[index].qty;
